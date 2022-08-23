@@ -1,0 +1,16 @@
+.borda {
+    border: 1px solid #dee2e6
+}
+
+.bandeira {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.pais {
+    min-width: 10px;
+    margin: 10px;
+    padding: 10px;
+}
