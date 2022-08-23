@@ -1,6 +1,7 @@
 import React from "react";
 import Titulo from "./componentes/Titulo/Titulo";
 import Filtro from "./componentes/Filtro/Filtro";
+import Paises from "./componentes/Paises/Paises";
 function App() {
   return (
     <main>
@@ -9,6 +10,7 @@ function App() {
           <Titulo />
         </div>
         <Filtro />
+        <Paises />
       </div>      
     </main>
   )
