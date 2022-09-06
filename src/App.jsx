@@ -8,12 +8,18 @@ import { useEffect } from "react";
 function App() {
   const [paises, setPaises] = useState([]);
   const [filtro, setFiltro] = useState();
-  const [populacao, setPopulacao] = useState();
+  const [populacao, setPopulacao] = useState(0);
+  const [totalPaises, setTotalPaises] = useState(0)
   const [paisesFiltrados, setPaisesFiltrados] = useState([]);
 
   function modifiqueiFiltro(modificacao) {
     setFiltro(modificacao);
     console.log(modificacao);
+    const paisesQueCasamComONome = paises.filter( (pais) => pais.nome.toLowerCase().includes(modificacao.toLowerCase()))
+    setPaisesFiltrados(paisesQueCasamComONome)
+    setTotalPaises(paisesQueCasamComONome.length)
+    const populacaoTotal = paisesQueCasamComONome.reduce((acc, pais) => pais.populacao + acc , 0)
+    setPopulacao(populacaoTotal)
   }
 
   useEffect( () => {
@@ -26,10 +32,10 @@ function App() {
                 'populacao': pais.population}
       })
       setPaises(paisesTransformados)
+      setPaisesFiltrados(paisesTransformados)
       const populacaoTotal = paisesTransformados.reduce((acc, pais) => pais.populacao + acc , 0)
       setPopulacao(populacaoTotal)
-      setPaisesFiltrados(paisesTransformados.length)
-
+      setTotalPaises(paises.length)
       console.log(paisesTransformados)
     }
     funcaoAssincrona().catch(() => {console.log('Deu erro')})
@@ -41,8 +47,8 @@ function App() {
         <div className=" d-flex justify-content-center">
           <Titulo />
         </div>
-        <Filtro paises={paisesFiltrados} populacao={populacao} onFiltroChange={modifiqueiFiltro} />
-        <Paises paises={paises}/>
+        <Filtro totalPaises={totalPaises} populacao={populacao} onFiltroChange={modifiqueiFiltro} />
+        <Paises paises={paisesFiltrados}/>
       </div>      
     </main>
   )

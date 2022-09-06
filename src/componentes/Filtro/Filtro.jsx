@@ -8,7 +8,7 @@ function Filtro(props) {
             <input onChange={(e) => {props.onFiltroChange(e.target.value)}} type='text' className='form-control'/>
         </div>
         <div className="col-12 col-lg-1">
-            <strong>Países: {props.paises}</strong>
+            <strong>Países: {props.totalPaises}</strong>
         </div>
         <div className="col-12 col-lg-1">
             <strong>População: {props.populacao}</strong>
